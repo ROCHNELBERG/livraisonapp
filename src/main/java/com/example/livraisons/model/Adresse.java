@@ -3,12 +3,8 @@ package com.example.livraisons.model;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.*;
 import lombok.*;
-import com.example.livraisons.model.enums.TypeVehicule;
 import jakarta.persistence.Embedded;
 import jakarta.validation.Valid;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Column;
 
 /**
  * Classe embarquée représentant une adresse
@@ -43,8 +39,14 @@ public class Adresse {
 
     @Embedded
     @Valid
-    private Coordonnee coordonnee; // Coordonnées GPS de l'adresse
+    private Coordonnees coordonnees; // Coordonnées GPS de l'adresse
     @Size(max = 255, message = " les instructions spéciales ne doivent pas dépasser 255 caractères")
     private String instructions; // Instructions spéciales pour la livraison
 
+    public boolean estValide() {
+        return rue != null && !rue.isBlank() &&
+                ville != null && !ville.isBlank() &&
+                codePostal != null && !codePostal.isBlank() &&
+                pays != null && !pays.isBlank();
+    }
 }

@@ -4,11 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import java.time.LocalDateTime;
-import com.example.livraisons.model.enums.TypeConfirmation;
 
-/**
- * Classe représentant un message entre utilisateurs
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -39,7 +35,7 @@ public class Message {
     @NotBlank(message = "Le contenu est obligatoire")
     @Size(max = 2000, message = "Le contenu ne doit pas dépasser 2000 caractères")
     private String contenu;
-
+    @Builder.Default
     private boolean lu = false;
 
     @NotNull(message = "La date est obligatoire")

@@ -1,10 +1,15 @@
 package com.example.livraisons.model;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+
 import lombok.*;
-import com.example.livraisons.model.enums.StatutUtilisateur;
-import com.example.livraisons.model.enums.MethodeAuthentification;
+import lombok.experimental.SuperBuilder;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -12,9 +17,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.List;
+import com.example.livraisons.model.enums.MethodeAuthentification;
+import com.example.livraisons.model.enums.StatutUtilisateur;
 
 /**
  * Classe représentant un utilisateur dans le système de livraison.
@@ -22,7 +26,7 @@ import java.util.List;
  */
 @Data // Lombok - Génère getters, setters, toString, equals, hashCode
 @NoArgsConstructor // Lombok - Génère un constructeur sans arguments
-@AllArgsConstructor // Lombok - Génère un constructeur avec tous les arguments
+@SuperBuilder
 @Inheritance(strategy = InheritanceType.JOINED) // Stratégie d'héritage pour JPA (une table par classe)
 @Entity // Indique que cette classe est une entité JPA
 @Table(name = "utilisateur") // Spécifie le nom de la table dans la base de données
@@ -58,7 +62,7 @@ public class Utilisateur implements UserDetails {
 
     // Mot de passe avec validation
     @NotBlank(message = "le mot de passe est requis")
-    @Size(min = 5, message = "le mot de passe doit contenir au moins 8 caractères")
+    @Size(min = 8, message = "le mot de passe doit contenir au moins 8 caractères")
     private String motDePasse;
 
     // Adresse embarquée (stockée dans la même table)
@@ -69,13 +73,15 @@ public class Utilisateur implements UserDetails {
     @ElementCollection
     @CollectionTable(name = "utilisateur_methodes_auth", joinColumns = @JoinColumn(name = "utilisateur_id"))
     @Column(name = "methode")
-    private List<MethodeAuthentification> methodesAuthentification;
+    private List<MethodeAuthentification> methodesAuthentification = List.of();
 
     // Date d'inscription auto-générée
     @CreationTimestamp
     private LocalDateTime dateInscription;
 
-    // Date de dernière connexion (à mettre à jour manuellement)
+    // Date de dernière connexion (mise à jour manuellement, ajout de l'annotation
+    // pour gestion automatique)
+    @UpdateTimestamp
     private LocalDateTime derniereConnexion;
 
     // Note moyenne avec validation
@@ -85,6 +91,7 @@ public class Utilisateur implements UserDetails {
 
     // Statut de l'utilisateur (enum stocké sous forme de string)
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private StatutUtilisateur statut = StatutUtilisateur.ACTIF;
 
     /* ===================== */

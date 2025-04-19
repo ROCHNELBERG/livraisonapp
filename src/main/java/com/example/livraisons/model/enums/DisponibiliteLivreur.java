@@ -1,4 +1,4 @@
-package com.livraison.model.enums;
+package com.example.livraisons.model.enums;
 
 /**
  * Statut de disponibilité des livreurs
@@ -18,7 +18,10 @@ public enum DisponibiliteLivreur {
             "Hors ligne"),
     EN_MISSION( // Accepté une livraison mais pas encore commencé
             false, // Non visible
-            "En attente de livraison");
+            "En attente de livraison"),
+    EN_ATTENTE( // En attente de validation
+            false, // Non visible
+            "En attente de validation");
 
     private final boolean disponible;
     private final String description;

@@ -15,16 +15,19 @@ import lombok.*;
 public class StatistiquesLivreur {
 
     @PositiveOrZero(message = "Le nombre de livraisons ne peut pas être négatif")
+    @Builder.Default
     private Integer livraisonsCompletees = 0;
 
     @PositiveOrZero(message = "La distance parcourue ne peut pas être négative")
+    @Builder.Default
     private Double distanceParcourue = 0.0; // en km
 
     @PositiveOrZero(message = "Le temps total ne peut pas être négatif")
+    @Builder.Default
     private Double tempsTotal = 0.0; // en heures
 
     @PositiveOrZero(message = "Le taux de réussite ne peut pas être négatif")
-    @DecimalMax(value = "100.0", message = "Le taux de réussite ne peut excéder 100%")
+    @Builder.Default
     private Double tauxReussite = 0.0;
 
     /**

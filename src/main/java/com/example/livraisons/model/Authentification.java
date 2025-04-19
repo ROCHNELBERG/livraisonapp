@@ -57,24 +57,31 @@ public class Authentification implements UserDetails {
     @Enumerated(EnumType.STRING)
     @Column(name = "methode")
     @NotEmpty(message = "Au moins une méthode d'authentification est requise")
-    private List<MethodeAuthentification> methodesAuthentification;
+    @Builder.Default
+    private List<MethodeAuthentification> methodesAuthentification = List.of();
 
     @Column(name = "is_email_verified", nullable = false)
+    @Builder.Default
     private boolean emailVerified = false;
 
     @Column(name = "is_phone_verified", nullable = false)
+    @Builder.Default
     private boolean phoneVerified = false;
-
+    @Builder.Default
     @Column(name = "is_active", nullable = false)
+
     private boolean active = true;
 
     @Column(name = "is_locked", nullable = false)
+    @Builder.Default
     private boolean locked = false;
 
     @Column(name = "is_expired", nullable = false)
+    @Builder.Default
     private boolean expired = false;
 
     @Column(name = "credentials_expired", nullable = false)
+    @Builder.Default
     private boolean credentialsExpired = false;
 
     @CreationTimestamp

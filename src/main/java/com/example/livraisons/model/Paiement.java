@@ -6,6 +6,8 @@ import lombok.*;
 import java.time.LocalDateTime;
 import com.example.livraisons.model.enums.MethodePaiement;
 import com.example.livraisons.model.enums.StatutPaiement;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
 
 /**
  * Classe embarquée pour les informations de paiement
@@ -27,6 +29,7 @@ public class Paiement {
 
     @Enumerated(EnumType.STRING)
     @NotNull(message = "Le statut est obligatoire")
+    @Builder.Default
     private StatutPaiement statut = StatutPaiement.EN_ATTENTE;
 
     @Size(max = 100, message = "L'ID de transaction ne doit pas dépasser 100 caractères")

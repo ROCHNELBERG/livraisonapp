@@ -3,6 +3,8 @@ package com.example.livraisons.model;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.*;
 import lombok.*;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
 /**
  * Classe embarquée pour les informations d'assurance
@@ -13,15 +15,17 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class Assurance {
-
+    @Builder.Default
     private boolean active = false;
 
+    @Builder.Default
     @PositiveOrZero(message = "La valeur déclarée ne peut pas être négative")
     @DecimalMax(value = "10000.0", message = "La valeur déclarée ne peut excéder 10 000")
     private Double valeurDeclaree = 0.0;
 
     @PositiveOrZero(message = "La prime ne peut pas être négative")
     @DecimalMax(value = "500.0", message = "La prime ne peut excéder 500")
+    @Builder.Default
     private Double prime = 0.0;
 
     /**

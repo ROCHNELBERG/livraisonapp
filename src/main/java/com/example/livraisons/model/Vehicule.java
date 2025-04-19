@@ -2,8 +2,9 @@ package com.example.livraisons.model;
 
 import com.example.livraisons.model.enums.TypeVehicule;
 
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.*;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
 import jakarta.validation.constraints.*;
 import lombok.*;
 

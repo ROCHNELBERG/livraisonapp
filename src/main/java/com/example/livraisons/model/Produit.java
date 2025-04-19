@@ -1,8 +1,12 @@
 package com.example.livraisons.model;
 
+import jakarta.persistence.*;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.*;
 import lombok.*;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
+import com.example.livraisons.model.enums.TypeProduit;
 
 /**
  * Classe embarquée représentant un produit à livrer

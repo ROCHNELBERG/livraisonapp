@@ -3,7 +3,6 @@ package com.example.livraisons.model;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.*;
 import lombok.*;
-import com.example.livraisons.model.enums.TypeConfirmation;
 
 /**
  * Classe embarquée représentant des coordonnées géographiques

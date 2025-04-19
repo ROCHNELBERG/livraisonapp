@@ -1,4 +1,4 @@
-package com.livraison.config;
+package com.example.livraisons.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -14,15 +14,15 @@ import org.springframework.security.web.SecurityFilterChain;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-   @Bean
-   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-      http
-            .csrf(AbstractHttpConfigurer::disable)
-            .authorizeHttpRequests(auth -> auth
-                  .requestMatchers("/api/v1/auth/**").permitAll()
-                  .anyRequest().authenticated())
-            .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+      @Bean
+      public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+            http
+                        .csrf(AbstractHttpConfigurer::disable)
+                        .authorizeHttpRequests(auth -> auth
+                                    .requestMatchers("/api/v1/auth/**").permitAll()
+                                    .anyRequest().authenticated())
+                        .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-      return http.build();
-   }
+            return http.build();
+      }
 }

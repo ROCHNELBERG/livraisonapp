@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import java.time.LocalDateTime;
-import com.example.livraisons.model.enums.TypeConfirmation;
 
 /**
  * Classe représentant un point de suivi d'une livraison
@@ -31,9 +30,8 @@ public class Suivi {
     private String statut;
 
     @Embedded
-    @Valid
+    @NotNull(message = "La position est obligatoire")
     private Position position;
-
     @NotNull(message = "La date est obligatoire")
     private LocalDateTime date;
 
@@ -51,6 +49,10 @@ public class Suivi {
                 .date(LocalDateTime.now())
                 .commentaire(commentaire)
                 .build();
+    }
+
+    public void setLivraison(Livraison livraison) {
+        this.livraison = livraison;
     }
 
     /**
@@ -85,4 +87,12 @@ public class Suivi {
         return statut != null && statut.equalsIgnoreCase("TERMINE");
 
     }
+
+    /**
+     * Vérifie si le point de suivi est échoué
+     */
+    public boolean estEchoue() {
+        return statut != null && statut.equalsIgnoreCase("ECHEC");
+    }
+
 }

@@ -82,6 +82,7 @@ public class Livraison {
 
     @Enumerated(EnumType.STRING) // Type de l'énumération pour la base de données
     @NotNull(message = "l'option de livraison est obligatoire")
+    @Builder.Default // Définit une valeur par défaut pour le champ
     private TypeOptionLivraison typeOptionLivraison = TypeOptionLivraison.STANDARD; // Type d'option de livraison
                                                                                     // (STANDARD, EXPRESS, PRIORITAIRE)
 
@@ -141,11 +142,9 @@ public class Livraison {
      * @return true si valide, false sinon
      */
 
-    public boolean estValide() {
-        return client != null && livreur != null && produit != null && adresseRecuperation != null
-                && adresseLivraison != null && paiement != null && confirmation != null
-                && adresseRecuperation.estValide() && adresseLivraison.estValide() && produit.estValide()
-                && paiement.estValide() && confirmation.estValide(); // Vérifie si tous les champs sont valides
+    public boolean adressesSontValides() {
+        return adresseRecuperation != null && adresseRecuperation.estValide() &&
+                adresseLivraison != null && adresseLivraison.estValide();
     }
 
     /**

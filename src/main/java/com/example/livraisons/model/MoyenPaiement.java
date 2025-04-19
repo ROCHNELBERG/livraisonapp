@@ -1,7 +1,7 @@
 package com.example.livraisons.model;
 
 import com.example.livraisons.model.enums.MethodePaiement;
-import com.example.livraisons.model.enums.TypeConfirmation;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -34,6 +34,7 @@ public class MoyenPaiement {
     private String numeroMobile; // Pour mobile money
 
     @Column(name = "est_principal")
+    @Builder.Default
     private boolean estPrincipal = false;
 
     /**

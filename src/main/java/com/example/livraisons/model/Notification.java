@@ -1,4 +1,4 @@
-package com.livraison.model;
+package com.example.livraisons.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -6,6 +6,9 @@ import lombok.*;
 import java.time.LocalDateTime;
 import com.example.livraisons.model.enums.CanalNotification;
 import com.example.livraisons.model.enums.TypeNotification;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
+
 
 /**
  * Représente une notification envoyée à un utilisateur
