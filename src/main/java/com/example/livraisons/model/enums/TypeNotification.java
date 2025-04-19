@@ -1,31 +1,36 @@
 package com.livraison.model.enums;
 
 /**
- * Types de notifications disponibles dans le système
+ * Types de notifications du système
  */
 public enum TypeNotification {
-    NOUVELLE_LIVRAISON("Nouvelle livraison disponible"),
-    STATUT_LIVRAISON("Changement de statut de livraison"),
-    MESSAGE("Nouveau message reçu"),
-    PAIEMENT("Notification de paiement"),
-    PROMOTION("Offre promotionnelle"),
-    URGENTE("Notification urgente"),
-    SYSTEME("Notification système");
+    NOUVELLE_LIVRAISON("Nouvelle livraison disponible",
+            "Une nouvelle livraison correspondant à vos critères est disponible"),
+    STATUT_LIVRAISON("Statut de livraison mis à jour",
+            "Le statut de votre livraison a changé"),
+    MESSAGE("Nouveau message",
+            "Vous avez reçu un nouveau message"),
+    PAIEMENT("Notification de paiement",
+            "Statut de paiement mis à jour"),
+    PROMOTION("Offre promotionnelle",
+            "Nouvelle offre disponible"),
+    URGENT("Notification urgente",
+            "Message urgent de l'équipe Livraison");
 
-    private final String description;
+    private final String titre;
+    private final String messageParDefaut;
 
-    TypeNotification(String description) {
-        this.description = description;
+    TypeNotification(String titre, String messageParDefaut) {
+        this.titre = titre;
+        this.messageParDefaut = messageParDefaut;
     }
 
-    public String getDescription() {
-        return description;
+    // Getters
+    public String getTitre() {
+        return titre;
     }
 
-    /**
-     * Vérifie si ce type de notification est critique
-     */
-    public boolean isCritique() {
-        return this == URGENTE || this == SYSTEME;
+    public String getMessageParDefaut() {
+        return messageParDefaut;
     }
 }
