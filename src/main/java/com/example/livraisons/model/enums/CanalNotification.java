@@ -1,14 +1,14 @@
-package com.livraison.model.enum;
+package com.example.livraisons.model.enums;
 
 /**
  * Canaux de diffusion des notifications
  */
 public enum CanalNotification {
-    EMAIL(      "Email",        true),
-    SMS(        "SMS",          true),
-    APP(        "Application",  true),
-    PUSH(       "Notification push", false),
-    WHATSAPP(   "WhatsApp",     false);
+    EMAIL("Email", true),
+    SMS("SMS", true),
+    APP("Application", true),
+    PUSH("Notification push", false),
+    WHATSAPP("WhatsApp", false);
 
     private final String libelle;
     private final boolean actifParDefaut;

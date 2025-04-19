@@ -1,15 +1,15 @@
-package com.livraison.model.enum;
+package com.example.livraisons.model.enums;
 
 /**
  * Méthodes de confirmation de livraison
  */
 public enum TypeConfirmation {
-    SIGNATURE(      "Signature du destinataire"),
-    QRCODE(         "Scan du QR code"),
-    PHOTO(          "Photo de preuve"),
-    CODE(           "Code à usage unique"),
-    APPEL(          "Appel téléphonique"),
-    AUCUNE(         "Aucune confirmation requise");
+    SIGNATURE("Signature du destinataire"),
+    QRCODE("Scan du QR code"),
+    PHOTO("Photo de preuve"),
+    CODE("Code à usage unique"),
+    APPEL("Appel téléphonique"),
+    AUCUNE("Aucune confirmation requise");
 
     private final String description;
 
